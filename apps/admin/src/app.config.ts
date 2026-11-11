@@ -1,7 +1,5 @@
 import type { AppId } from "@bishnoi/contracts";
-import type { NavItem } from "@bishnoi/ui";
-import { features } from "@/features";
 
 export const APP_ID: AppId = "admin";
 
-export const nav: NavItem[] = [{ href: "/", label: "Dashboard" }, ...features.map((feature) => ({ href: `/${feature.id}`, label: feature.name }))];
+// Navigation lives in src/navigation/config.ts (Admin Panel sidebar, routes and breadcrumbs).
