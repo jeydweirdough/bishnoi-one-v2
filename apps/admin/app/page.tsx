@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { ComingSoon } from "@/components/ComingSoon";
-import { resolveRoute } from "@/navigation/resolve";
+import { getDashboardData } from "@/dashboard/data";
+import { DashboardView } from "@/dashboard/DashboardView";
 
 export const metadata: Metadata = { title: "Dashboard" };
 
-export default function DashboardPage() {
-  const route = resolveRoute([]);
-  if (route?.kind !== "page") notFound();
-  return <ComingSoon route={route} />;
+export default async function DashboardPage() {
+  const data = await getDashboardData();
+  return <DashboardView data={data} />;
 }
