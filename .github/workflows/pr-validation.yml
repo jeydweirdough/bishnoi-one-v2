@@ -28,7 +28,7 @@ jobs:
       - name: Merge queue
         if: github.event_name == 'merge_group'
         run: echo "Validated on the pull request."
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         if: github.event_name != 'merge_group'
         with:
           ref: ${{ github.event.pull_request.base.sha }}
@@ -51,14 +51,14 @@ jobs:
         run: echo "Validated on the pull request."
       - name: Check out trusted base
         if: github.event_name != 'merge_group'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.base.sha }}
           path: trusted
           persist-credentials: false
       - name: Check out PR (data only)
         if: github.event_name != 'merge_group'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           path: pr
