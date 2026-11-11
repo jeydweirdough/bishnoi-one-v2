@@ -19,20 +19,13 @@ function scopesFor(type, ownership) {
   return [...apps, ...packages, "shared"];
 }
 
-/**
- * Validate `<type>/<scope>-<description>`. A valid name does NOT prove who pushed the branch;
- * identity comes from the verified PR author (see scope-check.mjs).
- */
-export function checkBranchName(name, ownership) {
-  if (AUTOMATION_BRANCH.test(name)) return { ok: true, automation: true };
-  const match = /^([a-z]+)\/([a-z0-9]+(?:-[a-z0-9]+)*)$/.exec(name);
-  if (!match || !BRANCH_TYPES.includes(match[1])) {
-    return {
-      ok: false,
-      error: `Branch "${name}" must look like <type>/<scope>-<description> with type one of ${BRANCH_TYPES.join(", ")} and lowercase kebab-case, e.g. feat/inventory-stock-adjustment.`,
-    };
+const SLUG = "[a-z0-9]+(?:-[a-z0-9]+)*";
+
+/** Check `<type>` and `<app>-<description>` (the part after the type). */
+function parseTypeAndScope(name, type, rest, ownership) {
+  if (!BRANCH_TYPES.includes(type)) {
+    return { ok: false, error: `Branch "${name}": "${type}" is not a branch type. Use one of ${BRANCH_TYPES.join(", ")}.` };
   }
-  const [, type, rest] = match;
   const scope = scopesFor(type, ownership)
     .filter((candidate) => rest.startsWith(`${candidate}-`) && rest.length > candidate.length + 1)
     .sort((a, b) => b.length - a.length)[0];
@@ -43,6 +36,38 @@ export function checkBranchName(name, ownership) {
     };
   }
   return { ok: true, type, scope, description: rest.slice(scope.length + 1) };
+}
+
+/**
+ * Validate `<person>/<type>/<app>-<description>`, e.g. `aaron/feat/inventory-stock-adjustment`.
+ * The older `<type>/<app>-<description>` form is still accepted and marked `legacy`.
+ * A valid name does NOT prove who pushed the branch; identity comes from the verified PR author
+ * (see scope-check.mjs).
+ */
+export function checkBranchName(name, ownership) {
+  if (AUTOMATION_BRANCH.test(name)) return { ok: true, automation: true };
+  const people = Object.keys(ownership.developers);
+
+  const current = new RegExp(`^([a-z0-9]+)/([a-z]+)/(${SLUG})$`).exec(name);
+  if (current) {
+    const [, person, type, rest] = current;
+    if (!people.includes(person)) {
+      return { ok: false, error: `Branch "${name}" starts with "${person}", which is not a developer in .github/ownership.json (${people.join(", ")}).` };
+    }
+    const parsed = parseTypeAndScope(name, type, rest, ownership);
+    return parsed.ok ? { ...parsed, person } : parsed;
+  }
+
+  const legacy = new RegExp(`^([a-z]+)/(${SLUG})$`).exec(name);
+  if (legacy && BRANCH_TYPES.includes(legacy[1])) {
+    const parsed = parseTypeAndScope(name, legacy[1], legacy[2], ownership);
+    return parsed.ok ? { ...parsed, legacy: true } : parsed;
+  }
+
+  return {
+    ok: false,
+    error: `Branch "${name}" must look like <person>/<type>/<app>-<description> in lowercase kebab-case, e.g. aaron/feat/inventory-stock-adjustment. People: ${people.join(", ")}. Types: ${BRANCH_TYPES.join(", ")}.`,
+  };
 }
 
 /** Validate a Conventional Commit PR title: `type(scope): subject`. Squash merges use it as the commit message. */

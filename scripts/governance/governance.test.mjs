@@ -17,18 +17,45 @@ withoutHandles.maintainers = [];
 const files = (...paths) => paths.map((path) => ({ status: "M", path }));
 
 describe("branch names", () => {
-  it("accepts the documented patterns", () => {
-    for (const name of ["feat/inventory-stock-adjustment", "fix/crm-lead-dedupe", "ui/shared-button", "chore/ci-cache", "fix/api-client-timeout", "dependabot/npm_and_yarn/next-16.5.0"]) {
+  it("accepts <person>/<type>/<app>-<description>", () => {
+    for (const name of ["aaron/feat/inventory-stock-adjustment", "zild/fix/books-invoice-rounding", "linus/ui/shared-data-table", "jade/chore/ci-cache", "dependabot/npm_and_yarn/next-16.5.0"]) {
       assert.equal(checkBranchName(name, ownership).ok, true, name);
+    }
+    assert.deepEqual(checkBranchName("aaron/feat/inventory-stock-adjustment", ownership), {
+      ok: true,
+      type: "feat",
+      scope: "inventory",
+      description: "stock-adjustment",
+      person: "aaron",
+    });
+  });
+
+  it("still accepts the old <type>/<app>-<description> form, marked legacy", () => {
+    for (const name of ["feat/inventory-stock-adjustment", "fix/crm-lead-dedupe", "ui/shared-button", "chore/ci-cache"]) {
+      const result = checkBranchName(name, ownership);
+      assert.equal(result.ok, true, name);
+      assert.equal(result.legacy, true, name);
     }
   });
 
   it("picks the longest matching scope", () => {
-    assert.equal(checkBranchName("fix/api-client-timeout", ownership).scope, "api-client");
+    assert.equal(checkBranchName("aryan/fix/api-client-timeout", ownership).scope, "api-client");
   });
 
   it("rejects bad names", () => {
-    for (const name of ["main-fix", "feature/inventory-x", "feat/inventory", "feat/unknownapp-thing", "feat/Inventory-Stock", "ui/auth-login"]) {
+    for (const name of [
+      "main-fix",
+      "feature/inventory-x",
+      "feat/inventory",
+      "feat/unknownapp-thing",
+      "feat/Inventory-Stock",
+      "ui/auth-login",
+      "bob/feat/inventory-x",
+      "aaron/feature/inventory-x",
+      "aaron/feat/inventory",
+      "Aaron/feat/inventory-x",
+      "aaron/inventory-x",
+    ]) {
       assert.equal(checkBranchName(name, ownership).ok, false, name);
     }
   });

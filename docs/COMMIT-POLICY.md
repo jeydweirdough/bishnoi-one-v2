@@ -47,7 +47,7 @@ format on PR titles. Individual commits on your branch should follow it too.
 ## The 10-step workflow
 
 1. **Update local `main`:** `git switch main && git pull --ff-only origin main`
-2. **Create a task branch:** `git switch -c feat/inventory-stock-adjustment`
+2. **Create a task branch:** `git switch -c aaron/feat/inventory-stock-adjustment`
 3. **Modify only your assigned files** (your app/feature; see [TEAM.md](TEAM.md)).
 4. **Stage explicitly.** Review first:
    ```bash
@@ -58,14 +58,14 @@ format on PR titles. Individual commits on your branch should follow it too.
    ```
    Never `git add -A` / `git add .`. Never stage `.env*`, build output or unrelated files.
 5. **Commit:** `git commit -m "feat(inventory): add stock adjustment"`
-6. **Push the branch:** `git push -u origin feat/inventory-stock-adjustment`
+6. **Push the branch:** `git push -u origin aaron/feat/inventory-stock-adjustment`
 7. **Open a PR to `main`:** `gh pr create --base main --fill` (or via github.com). Fill in the template.
 8. **Pass checks and independent review.** See [PULL-REQUESTS.md](PULL-REQUESTS.md).
 9. **Resolve conflicts and review comments.** See [MERGE-CONFLICTS.md](MERGE-CONFLICTS.md).
 10. **Squash merge, then delete the branch** (GitHub deletes the remote branch automatically):
     ```bash
     git switch main && git pull --ff-only origin main
-    git branch -d feat/inventory-stock-adjustment
+    git branch -d aaron/feat/inventory-stock-adjustment
     ```
 
 ## Never
