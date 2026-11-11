@@ -6,11 +6,11 @@
   "uiAuthority": "linus",
   "overrideLabel": "scope-override-approved",
   "developers": {
-    "aaron": { "name": "Aaron", "github": null, "role": "Application developer" },
-    "aryan": { "name": "Aryan", "github": null, "role": "Application developer" },
-    "zild": { "name": "Zild", "github": null, "role": "Application developer" },
-    "jade": { "name": "Jade", "github": null, "role": "Application developer" },
-    "linus": { "name": "Linus", "github": null, "role": "Frontend/UI/UX lead (sole UI authority)" }
+    "aaron": { "name": "Aaron", "github": "manila404", "role": "Application developer" },
+    "aryan": { "name": "Aryan", "github": "aryansharma26", "role": "Application developer" },
+    "zild": { "name": "Zild", "github": "ziel1203", "role": "Application developer" },
+    "jade": { "name": "Jade", "github": "jeydweirdough", "role": "Application developer" },
+    "linus": { "name": "Linus", "github": "linus2002", "role": "Frontend/UI/UX lead (sole UI authority)" }
   },
   "apps": {
     "one": {

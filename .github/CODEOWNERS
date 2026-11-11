@@ -9,180 +9,180 @@
 # /docs/ <maintainers> — no verified GitHub handles yet
 
 # apps/one — lead: Linus
-# /apps/one/ <Linus> <Jade> — no verified GitHub handles yet
-# /apps/one/src/features/launcher/ <Linus> <Jade> — no verified GitHub handles yet
-# /apps/one/app/launcher/ <Linus> <Jade> — no verified GitHub handles yet
-# /apps/one/app/api/launcher/ <Linus> <Jade> — no verified GitHub handles yet
-# /apps/one/src/features/profile/ <Linus> <Jade> — no verified GitHub handles yet
-# /apps/one/app/profile/ <Linus> <Jade> — no verified GitHub handles yet
-# /apps/one/app/api/profile/ <Linus> <Jade> — no verified GitHub handles yet
-# /apps/one/src/features/organization/ <Linus> <Jade> — no verified GitHub handles yet
-# /apps/one/app/organization/ <Linus> <Jade> — no verified GitHub handles yet
-# /apps/one/app/api/organization/ <Linus> <Jade> — no verified GitHub handles yet
-# /apps/one/src/features/access/ <Linus> <Jade> — no verified GitHub handles yet
-# /apps/one/app/access/ <Linus> <Jade> — no verified GitHub handles yet
-# /apps/one/app/api/access/ <Linus> <Jade> — no verified GitHub handles yet
+/apps/one/ @linus2002 @jeydweirdough
+/apps/one/src/features/launcher/ @linus2002 @jeydweirdough
+/apps/one/app/launcher/ @linus2002 @jeydweirdough
+/apps/one/app/api/launcher/ @linus2002 @jeydweirdough
+/apps/one/src/features/profile/ @linus2002 @jeydweirdough
+/apps/one/app/profile/ @linus2002 @jeydweirdough
+/apps/one/app/api/profile/ @linus2002 @jeydweirdough
+/apps/one/src/features/organization/ @linus2002 @jeydweirdough
+/apps/one/app/organization/ @linus2002 @jeydweirdough
+/apps/one/app/api/organization/ @linus2002 @jeydweirdough
+/apps/one/src/features/access/ @linus2002 @jeydweirdough
+/apps/one/app/access/ @linus2002 @jeydweirdough
+/apps/one/app/api/access/ @linus2002 @jeydweirdough
 
 # apps/inventory — lead: Aaron
-# /apps/inventory/ <Aaron> <Zild> — no verified GitHub handles yet
-# /apps/inventory/src/features/items/ <Aaron> <Zild> — no verified GitHub handles yet
-# /apps/inventory/app/items/ <Aaron> <Zild> — no verified GitHub handles yet
-# /apps/inventory/app/api/items/ <Aaron> <Zild> — no verified GitHub handles yet
-# /apps/inventory/src/features/stock-adjustments/ <Aaron> <Zild> — no verified GitHub handles yet
-# /apps/inventory/app/stock-adjustments/ <Aaron> <Zild> — no verified GitHub handles yet
-# /apps/inventory/app/api/stock-adjustments/ <Aaron> <Zild> — no verified GitHub handles yet
-# /apps/inventory/src/features/warehouses/ <Aaron> <Zild> — no verified GitHub handles yet
-# /apps/inventory/app/warehouses/ <Aaron> <Zild> — no verified GitHub handles yet
-# /apps/inventory/app/api/warehouses/ <Aaron> <Zild> — no verified GitHub handles yet
+/apps/inventory/ @manila404 @ziel1203
+/apps/inventory/src/features/items/ @manila404 @ziel1203
+/apps/inventory/app/items/ @manila404 @ziel1203
+/apps/inventory/app/api/items/ @manila404 @ziel1203
+/apps/inventory/src/features/stock-adjustments/ @manila404 @ziel1203
+/apps/inventory/app/stock-adjustments/ @manila404 @ziel1203
+/apps/inventory/app/api/stock-adjustments/ @manila404 @ziel1203
+/apps/inventory/src/features/warehouses/ @manila404 @ziel1203
+/apps/inventory/app/warehouses/ @manila404 @ziel1203
+/apps/inventory/app/api/warehouses/ @manila404 @ziel1203
 
 # apps/crm — lead: Aryan
-# /apps/crm/ <Aryan> <Jade> — no verified GitHub handles yet
-# /apps/crm/src/features/leads/ <Aryan> <Jade> — no verified GitHub handles yet
-# /apps/crm/app/leads/ <Aryan> <Jade> — no verified GitHub handles yet
-# /apps/crm/app/api/leads/ <Aryan> <Jade> — no verified GitHub handles yet
-# /apps/crm/src/features/contacts/ <Aryan> <Jade> — no verified GitHub handles yet
-# /apps/crm/app/contacts/ <Aryan> <Jade> — no verified GitHub handles yet
-# /apps/crm/app/api/contacts/ <Aryan> <Jade> — no verified GitHub handles yet
-# /apps/crm/src/features/deals/ <Aryan> <Jade> — no verified GitHub handles yet
-# /apps/crm/app/deals/ <Aryan> <Jade> — no verified GitHub handles yet
-# /apps/crm/app/api/deals/ <Aryan> <Jade> — no verified GitHub handles yet
+/apps/crm/ @aryansharma26 @jeydweirdough
+/apps/crm/src/features/leads/ @aryansharma26 @jeydweirdough
+/apps/crm/app/leads/ @aryansharma26 @jeydweirdough
+/apps/crm/app/api/leads/ @aryansharma26 @jeydweirdough
+/apps/crm/src/features/contacts/ @aryansharma26 @jeydweirdough
+/apps/crm/app/contacts/ @aryansharma26 @jeydweirdough
+/apps/crm/app/api/contacts/ @aryansharma26 @jeydweirdough
+/apps/crm/src/features/deals/ @aryansharma26 @jeydweirdough
+/apps/crm/app/deals/ @aryansharma26 @jeydweirdough
+/apps/crm/app/api/deals/ @aryansharma26 @jeydweirdough
 
 # apps/books — lead: Zild
-# /apps/books/ <Aaron> <Zild> <Aryan> — no verified GitHub handles yet
-# /apps/books/src/features/invoices/ <Aaron> <Zild> — no verified GitHub handles yet
-# /apps/books/app/invoices/ <Aaron> <Zild> — no verified GitHub handles yet
-# /apps/books/app/api/invoices/ <Aaron> <Zild> — no verified GitHub handles yet
-# /apps/books/src/features/ledger/ <Zild> <Aryan> — no verified GitHub handles yet
-# /apps/books/app/ledger/ <Zild> <Aryan> — no verified GitHub handles yet
-# /apps/books/app/api/ledger/ <Zild> <Aryan> — no verified GitHub handles yet
-# /apps/books/src/features/financial-reports/ <Zild> <Aryan> — no verified GitHub handles yet
-# /apps/books/app/financial-reports/ <Zild> <Aryan> — no verified GitHub handles yet
-# /apps/books/app/api/financial-reports/ <Zild> <Aryan> — no verified GitHub handles yet
+/apps/books/ @manila404 @ziel1203 @aryansharma26
+/apps/books/src/features/invoices/ @manila404 @ziel1203
+/apps/books/app/invoices/ @manila404 @ziel1203
+/apps/books/app/api/invoices/ @manila404 @ziel1203
+/apps/books/src/features/ledger/ @ziel1203 @aryansharma26
+/apps/books/app/ledger/ @ziel1203 @aryansharma26
+/apps/books/app/api/ledger/ @ziel1203 @aryansharma26
+/apps/books/src/features/financial-reports/ @ziel1203 @aryansharma26
+/apps/books/app/financial-reports/ @ziel1203 @aryansharma26
+/apps/books/app/api/financial-reports/ @ziel1203 @aryansharma26
 
 # apps/expense — lead: Zild
-# /apps/expense/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/expense/src/features/claims/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/expense/app/claims/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/expense/app/api/claims/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/expense/src/features/expense-reports/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/expense/app/expense-reports/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/expense/app/api/expense-reports/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/expense/src/features/policies/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/expense/app/policies/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/expense/app/api/policies/ <Zild> <Aaron> — no verified GitHub handles yet
+/apps/expense/ @ziel1203 @manila404
+/apps/expense/src/features/claims/ @ziel1203 @manila404
+/apps/expense/app/claims/ @ziel1203 @manila404
+/apps/expense/app/api/claims/ @ziel1203 @manila404
+/apps/expense/src/features/expense-reports/ @ziel1203 @manila404
+/apps/expense/app/expense-reports/ @ziel1203 @manila404
+/apps/expense/app/api/expense-reports/ @ziel1203 @manila404
+/apps/expense/src/features/policies/ @ziel1203 @manila404
+/apps/expense/app/policies/ @ziel1203 @manila404
+/apps/expense/app/api/policies/ @ziel1203 @manila404
 
 # apps/payroll — lead: Zild
-# /apps/payroll/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/payroll/src/features/pay-runs/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/payroll/app/pay-runs/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/payroll/app/api/pay-runs/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/payroll/src/features/salary-components/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/payroll/app/salary-components/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/payroll/app/api/salary-components/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/payroll/src/features/payslips/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/payroll/app/payslips/ <Zild> <Aaron> — no verified GitHub handles yet
-# /apps/payroll/app/api/payslips/ <Zild> <Aaron> — no verified GitHub handles yet
+/apps/payroll/ @ziel1203 @manila404
+/apps/payroll/src/features/pay-runs/ @ziel1203 @manila404
+/apps/payroll/app/pay-runs/ @ziel1203 @manila404
+/apps/payroll/app/api/pay-runs/ @ziel1203 @manila404
+/apps/payroll/src/features/salary-components/ @ziel1203 @manila404
+/apps/payroll/app/salary-components/ @ziel1203 @manila404
+/apps/payroll/app/api/salary-components/ @ziel1203 @manila404
+/apps/payroll/src/features/payslips/ @ziel1203 @manila404
+/apps/payroll/app/payslips/ @ziel1203 @manila404
+/apps/payroll/app/api/payslips/ @ziel1203 @manila404
 
 # apps/people — lead: Jade
-# /apps/people/ <Aaron> <Jade> <Zild> — no verified GitHub handles yet
-# /apps/people/src/features/employees/ <Jade> <Zild> — no verified GitHub handles yet
-# /apps/people/app/employees/ <Jade> <Zild> — no verified GitHub handles yet
-# /apps/people/app/api/employees/ <Jade> <Zild> — no verified GitHub handles yet
-# /apps/people/src/features/onboarding/ <Jade> <Zild> — no verified GitHub handles yet
-# /apps/people/app/onboarding/ <Jade> <Zild> — no verified GitHub handles yet
-# /apps/people/app/api/onboarding/ <Jade> <Zild> — no verified GitHub handles yet
-# /apps/people/src/features/attendance/ <Aaron> <Jade> — no verified GitHub handles yet
-# /apps/people/app/attendance/ <Aaron> <Jade> — no verified GitHub handles yet
-# /apps/people/app/api/attendance/ <Aaron> <Jade> — no verified GitHub handles yet
-# /apps/people/src/features/leave/ <Aaron> <Jade> — no verified GitHub handles yet
-# /apps/people/app/leave/ <Aaron> <Jade> — no verified GitHub handles yet
-# /apps/people/app/api/leave/ <Aaron> <Jade> — no verified GitHub handles yet
+/apps/people/ @manila404 @jeydweirdough @ziel1203
+/apps/people/src/features/employees/ @jeydweirdough @ziel1203
+/apps/people/app/employees/ @jeydweirdough @ziel1203
+/apps/people/app/api/employees/ @jeydweirdough @ziel1203
+/apps/people/src/features/onboarding/ @jeydweirdough @ziel1203
+/apps/people/app/onboarding/ @jeydweirdough @ziel1203
+/apps/people/app/api/onboarding/ @jeydweirdough @ziel1203
+/apps/people/src/features/attendance/ @manila404 @jeydweirdough
+/apps/people/app/attendance/ @manila404 @jeydweirdough
+/apps/people/app/api/attendance/ @manila404 @jeydweirdough
+/apps/people/src/features/leave/ @manila404 @jeydweirdough
+/apps/people/app/leave/ @manila404 @jeydweirdough
+/apps/people/app/api/leave/ @manila404 @jeydweirdough
 
 # apps/recruit — lead: Aaron
-# /apps/recruit/ <Aaron> <Jade> <Aryan> — no verified GitHub handles yet
-# /apps/recruit/src/features/job-openings/ <Aaron> <Aryan> — no verified GitHub handles yet
-# /apps/recruit/app/job-openings/ <Aaron> <Aryan> — no verified GitHub handles yet
-# /apps/recruit/app/api/job-openings/ <Aaron> <Aryan> — no verified GitHub handles yet
-# /apps/recruit/src/features/candidates/ <Aaron> <Aryan> — no verified GitHub handles yet
-# /apps/recruit/app/candidates/ <Aaron> <Aryan> — no verified GitHub handles yet
-# /apps/recruit/app/api/candidates/ <Aaron> <Aryan> — no verified GitHub handles yet
-# /apps/recruit/src/features/interviews/ <Jade> <Aaron> — no verified GitHub handles yet
-# /apps/recruit/app/interviews/ <Jade> <Aaron> — no verified GitHub handles yet
-# /apps/recruit/app/api/interviews/ <Jade> <Aaron> — no verified GitHub handles yet
-# /apps/recruit/src/features/offers/ <Jade> <Aaron> — no verified GitHub handles yet
-# /apps/recruit/app/offers/ <Jade> <Aaron> — no verified GitHub handles yet
-# /apps/recruit/app/api/offers/ <Jade> <Aaron> — no verified GitHub handles yet
+/apps/recruit/ @manila404 @jeydweirdough @aryansharma26
+/apps/recruit/src/features/job-openings/ @manila404 @aryansharma26
+/apps/recruit/app/job-openings/ @manila404 @aryansharma26
+/apps/recruit/app/api/job-openings/ @manila404 @aryansharma26
+/apps/recruit/src/features/candidates/ @manila404 @aryansharma26
+/apps/recruit/app/candidates/ @manila404 @aryansharma26
+/apps/recruit/app/api/candidates/ @manila404 @aryansharma26
+/apps/recruit/src/features/interviews/ @jeydweirdough @manila404
+/apps/recruit/app/interviews/ @jeydweirdough @manila404
+/apps/recruit/app/api/interviews/ @jeydweirdough @manila404
+/apps/recruit/src/features/offers/ @jeydweirdough @manila404
+/apps/recruit/app/offers/ @jeydweirdough @manila404
+/apps/recruit/app/api/offers/ @jeydweirdough @manila404
 
 # apps/analytics — lead: Linus
-# /apps/analytics/ <Aaron> <Aryan> <Zild> <Jade> <Linus> — no verified GitHub handles yet
-# /apps/analytics/src/features/overview/ <Linus> <Jade> — no verified GitHub handles yet
-# /apps/analytics/app/overview/ <Linus> <Jade> — no verified GitHub handles yet
-# /apps/analytics/app/api/overview/ <Linus> <Jade> — no verified GitHub handles yet
-# /apps/analytics/src/features/inventory-reports/ <Aaron> <Linus> — no verified GitHub handles yet
-# /apps/analytics/app/inventory-reports/ <Aaron> <Linus> — no verified GitHub handles yet
-# /apps/analytics/app/api/inventory-reports/ <Aaron> <Linus> — no verified GitHub handles yet
-# /apps/analytics/src/features/recruit-reports/ <Aaron> <Linus> — no verified GitHub handles yet
-# /apps/analytics/app/recruit-reports/ <Aaron> <Linus> — no verified GitHub handles yet
-# /apps/analytics/app/api/recruit-reports/ <Aaron> <Linus> — no verified GitHub handles yet
-# /apps/analytics/src/features/sales-reports/ <Aryan> <Linus> — no verified GitHub handles yet
-# /apps/analytics/app/sales-reports/ <Aryan> <Linus> — no verified GitHub handles yet
-# /apps/analytics/app/api/sales-reports/ <Aryan> <Linus> — no verified GitHub handles yet
-# /apps/analytics/src/features/finance-reports/ <Zild> <Linus> — no verified GitHub handles yet
-# /apps/analytics/app/finance-reports/ <Zild> <Linus> — no verified GitHub handles yet
-# /apps/analytics/app/api/finance-reports/ <Zild> <Linus> — no verified GitHub handles yet
-# /apps/analytics/src/features/hr-reports/ <Jade> <Linus> — no verified GitHub handles yet
-# /apps/analytics/app/hr-reports/ <Jade> <Linus> — no verified GitHub handles yet
-# /apps/analytics/app/api/hr-reports/ <Jade> <Linus> — no verified GitHub handles yet
+/apps/analytics/ @manila404 @aryansharma26 @ziel1203 @jeydweirdough @linus2002
+/apps/analytics/src/features/overview/ @linus2002 @jeydweirdough
+/apps/analytics/app/overview/ @linus2002 @jeydweirdough
+/apps/analytics/app/api/overview/ @linus2002 @jeydweirdough
+/apps/analytics/src/features/inventory-reports/ @manila404 @linus2002
+/apps/analytics/app/inventory-reports/ @manila404 @linus2002
+/apps/analytics/app/api/inventory-reports/ @manila404 @linus2002
+/apps/analytics/src/features/recruit-reports/ @manila404 @linus2002
+/apps/analytics/app/recruit-reports/ @manila404 @linus2002
+/apps/analytics/app/api/recruit-reports/ @manila404 @linus2002
+/apps/analytics/src/features/sales-reports/ @aryansharma26 @linus2002
+/apps/analytics/app/sales-reports/ @aryansharma26 @linus2002
+/apps/analytics/app/api/sales-reports/ @aryansharma26 @linus2002
+/apps/analytics/src/features/finance-reports/ @ziel1203 @linus2002
+/apps/analytics/app/finance-reports/ @ziel1203 @linus2002
+/apps/analytics/app/api/finance-reports/ @ziel1203 @linus2002
+/apps/analytics/src/features/hr-reports/ @jeydweirdough @linus2002
+/apps/analytics/app/hr-reports/ @jeydweirdough @linus2002
+/apps/analytics/app/api/hr-reports/ @jeydweirdough @linus2002
 
 # apps/admin — lead: Jade
-# /apps/admin/ <Jade> <Aryan> — no verified GitHub handles yet
-# /apps/admin/src/features/users/ <Jade> <Aryan> — no verified GitHub handles yet
-# /apps/admin/app/users/ <Jade> <Aryan> — no verified GitHub handles yet
-# /apps/admin/app/api/users/ <Jade> <Aryan> — no verified GitHub handles yet
-# /apps/admin/src/features/roles/ <Jade> <Aryan> — no verified GitHub handles yet
-# /apps/admin/app/roles/ <Jade> <Aryan> — no verified GitHub handles yet
-# /apps/admin/app/api/roles/ <Jade> <Aryan> — no verified GitHub handles yet
-# /apps/admin/src/features/audit-log/ <Jade> <Aryan> — no verified GitHub handles yet
-# /apps/admin/app/audit-log/ <Jade> <Aryan> — no verified GitHub handles yet
-# /apps/admin/app/api/audit-log/ <Jade> <Aryan> — no verified GitHub handles yet
+/apps/admin/ @jeydweirdough @aryansharma26
+/apps/admin/src/features/users/ @jeydweirdough @aryansharma26
+/apps/admin/app/users/ @jeydweirdough @aryansharma26
+/apps/admin/app/api/users/ @jeydweirdough @aryansharma26
+/apps/admin/src/features/roles/ @jeydweirdough @aryansharma26
+/apps/admin/app/roles/ @jeydweirdough @aryansharma26
+/apps/admin/app/api/roles/ @jeydweirdough @aryansharma26
+/apps/admin/src/features/audit-log/ @jeydweirdough @aryansharma26
+/apps/admin/app/audit-log/ @jeydweirdough @aryansharma26
+/apps/admin/app/api/audit-log/ @jeydweirdough @aryansharma26
 
 # apps/desk — lead: Aryan
-# /apps/desk/ <Aryan> <Jade> <Zild> — no verified GitHub handles yet
-# /apps/desk/src/features/tickets/ <Aryan> <Zild> — no verified GitHub handles yet
-# /apps/desk/app/tickets/ <Aryan> <Zild> — no verified GitHub handles yet
-# /apps/desk/app/api/tickets/ <Aryan> <Zild> — no verified GitHub handles yet
-# /apps/desk/src/features/sla/ <Aryan> <Zild> — no verified GitHub handles yet
-# /apps/desk/app/sla/ <Aryan> <Zild> — no verified GitHub handles yet
-# /apps/desk/app/api/sla/ <Aryan> <Zild> — no verified GitHub handles yet
-# /apps/desk/src/features/knowledge-base/ <Jade> <Aryan> — no verified GitHub handles yet
-# /apps/desk/app/knowledge-base/ <Jade> <Aryan> — no verified GitHub handles yet
-# /apps/desk/app/api/knowledge-base/ <Jade> <Aryan> — no verified GitHub handles yet
+/apps/desk/ @aryansharma26 @jeydweirdough @ziel1203
+/apps/desk/src/features/tickets/ @aryansharma26 @ziel1203
+/apps/desk/app/tickets/ @aryansharma26 @ziel1203
+/apps/desk/app/api/tickets/ @aryansharma26 @ziel1203
+/apps/desk/src/features/sla/ @aryansharma26 @ziel1203
+/apps/desk/app/sla/ @aryansharma26 @ziel1203
+/apps/desk/app/api/sla/ @aryansharma26 @ziel1203
+/apps/desk/src/features/knowledge-base/ @jeydweirdough @aryansharma26
+/apps/desk/app/knowledge-base/ @jeydweirdough @aryansharma26
+/apps/desk/app/api/knowledge-base/ @jeydweirdough @aryansharma26
 
 # apps/contracts — lead: Aryan
-# /apps/contracts/ <Aryan> <Zild> <Jade> <Aaron> — no verified GitHub handles yet
-# /apps/contracts/src/features/templates/ <Aryan> <Aaron> — no verified GitHub handles yet
-# /apps/contracts/app/templates/ <Aryan> <Aaron> — no verified GitHub handles yet
-# /apps/contracts/app/api/templates/ <Aryan> <Aaron> — no verified GitHub handles yet
-# /apps/contracts/src/features/obligations/ <Zild> <Aryan> — no verified GitHub handles yet
-# /apps/contracts/app/obligations/ <Zild> <Aryan> — no verified GitHub handles yet
-# /apps/contracts/app/api/obligations/ <Zild> <Aryan> — no verified GitHub handles yet
-# /apps/contracts/src/features/approvals/ <Jade> <Aryan> — no verified GitHub handles yet
-# /apps/contracts/app/approvals/ <Jade> <Aryan> — no verified GitHub handles yet
-# /apps/contracts/app/api/approvals/ <Jade> <Aryan> — no verified GitHub handles yet
+/apps/contracts/ @aryansharma26 @ziel1203 @jeydweirdough @manila404
+/apps/contracts/src/features/templates/ @aryansharma26 @manila404
+/apps/contracts/app/templates/ @aryansharma26 @manila404
+/apps/contracts/app/api/templates/ @aryansharma26 @manila404
+/apps/contracts/src/features/obligations/ @ziel1203 @aryansharma26
+/apps/contracts/app/obligations/ @ziel1203 @aryansharma26
+/apps/contracts/app/api/obligations/ @ziel1203 @aryansharma26
+/apps/contracts/src/features/approvals/ @jeydweirdough @aryansharma26
+/apps/contracts/app/approvals/ @jeydweirdough @aryansharma26
+/apps/contracts/app/api/approvals/ @jeydweirdough @aryansharma26
 
 # apps/workdrive — lead: Aryan
-# /apps/workdrive/ <Aryan> <Jade> <Zild> — no verified GitHub handles yet
-# /apps/workdrive/src/features/files/ <Aryan> <Zild> — no verified GitHub handles yet
-# /apps/workdrive/app/files/ <Aryan> <Zild> — no verified GitHub handles yet
-# /apps/workdrive/app/api/files/ <Aryan> <Zild> — no verified GitHub handles yet
-# /apps/workdrive/src/features/sharing/ <Jade> <Aryan> — no verified GitHub handles yet
-# /apps/workdrive/app/sharing/ <Jade> <Aryan> — no verified GitHub handles yet
-# /apps/workdrive/app/api/sharing/ <Jade> <Aryan> — no verified GitHub handles yet
+/apps/workdrive/ @aryansharma26 @jeydweirdough @ziel1203
+/apps/workdrive/src/features/files/ @aryansharma26 @ziel1203
+/apps/workdrive/app/files/ @aryansharma26 @ziel1203
+/apps/workdrive/app/api/files/ @aryansharma26 @ziel1203
+/apps/workdrive/src/features/sharing/ @jeydweirdough @aryansharma26
+/apps/workdrive/app/sharing/ @jeydweirdough @aryansharma26
+/apps/workdrive/app/api/sharing/ @jeydweirdough @aryansharma26
 
 # Shared packages — owners plus maintainers
-# /packages/ui/ <Linus> <Jade> — no verified GitHub handles yet
-# /packages/auth/ <Jade> <Aryan> — no verified GitHub handles yet
-# /packages/permissions/ <Jade> <Aryan> — no verified GitHub handles yet
+/packages/ui/ @linus2002 @jeydweirdough
+/packages/auth/ @jeydweirdough @aryansharma26
+/packages/permissions/ @jeydweirdough @aryansharma26
 # /packages/database/ <maintainers> — no verified GitHub handles yet
 # /packages/api-client/ <maintainers> — no verified GitHub handles yet
 # /packages/contracts/ <maintainers> — no verified GitHub handles yet
@@ -190,12 +190,12 @@
 # /packages/database/migrations/ <maintainers> — no verified GitHub handles yet
 
 # Protected UI paths — Linus (CI additionally requires Linus's own approval)
-# /packages/ui/ <Linus> <Jade> — no verified GitHub handles yet
-# /packages/config/postcss.config.mjs <Linus> <Jade> — no verified GitHub handles yet
-# /apps/*/app/globals.css <Linus> <Jade> — no verified GitHub handles yet
-# /apps/*/app/layout.tsx <Linus> <Jade> — no verified GitHub handles yet
-# /apps/*/public/ <Linus> <Jade> — no verified GitHub handles yet
-# /docs/UI-GOVERNANCE.md <Linus> <Jade> — no verified GitHub handles yet
+/packages/ui/ @linus2002 @jeydweirdough
+/packages/config/postcss.config.mjs @linus2002 @jeydweirdough
+/apps/*/app/globals.css @linus2002 @jeydweirdough
+/apps/*/app/layout.tsx @linus2002 @jeydweirdough
+/apps/*/public/ @linus2002 @jeydweirdough
+/docs/UI-GOVERNANCE.md @linus2002 @jeydweirdough
 
 # Governance — maintainers only (listed last so nothing above overrides it)
 # /.github/ <maintainers> — no verified GitHub handles yet

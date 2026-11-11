@@ -10,6 +10,9 @@ const ownership = loadOwnership();
 const withHandles = structuredClone(ownership);
 for (const [id, dev] of Object.entries(withHandles.developers)) dev.github = `${id}-gh`;
 withHandles.maintainers = ["maint-gh"];
+const withoutHandles = structuredClone(ownership);
+for (const dev of Object.values(withoutHandles.developers)) dev.github = null;
+withoutHandles.maintainers = [];
 
 const files = (...paths) => paths.map((path) => ({ status: "M", path }));
 
@@ -68,7 +71,7 @@ describe("path classification", () => {
   });
 
   it("maps only configured handles to developers", () => {
-    assert.equal(developerForLogin("aaron", ownership), null);
+    assert.equal(developerForLogin("aaron", withoutHandles), null);
     assert.equal(developerForLogin("AARON-GH", withHandles), "aaron");
   });
 });
@@ -154,7 +157,7 @@ describe("UI fidelity heuristic", () => {
 
 describe("CODEOWNERS", () => {
   it("comments out lines without verified handles", () => {
-    assert.match(buildCodeowners(ownership), /^# \/apps\/crm\/ <Aryan> <Jade> — no verified GitHub handles yet$/m);
+    assert.match(buildCodeowners(withoutHandles), /^# \/apps\/crm\/ <Aryan> <Jade> — no verified GitHub handles yet$/m);
   });
 
   it("uses handles once configured and keeps governance last", () => {
