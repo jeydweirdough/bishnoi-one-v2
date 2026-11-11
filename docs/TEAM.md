@@ -15,16 +15,16 @@ summarises it. If they disagree, `ownership.json` wins. Fix this page in the sam
 
 ### GitHub identities
 
-CI maps the **verified GitHub login of the PR author** to a developer. Handles are **not configured yet**.
+CI maps the **verified GitHub login of the PR author** to a developer. Developer handles are configured; **maintainers are not yet**.
 A repository administrator must fill them in (see [Configuring identities](#configuring-identities)).
 
 | Developer | GitHub handle |
 |---|---|
-| Aaron | _not configured_ |
-| Aryan | _not configured_ |
-| Zild | _not configured_ |
-| Jade | _not configured_ |
-| Linus | _not configured_ |
+| Aaron | [@manila404](https://github.com/manila404) |
+| Aryan | [@aryansharma26](https://github.com/aryansharma26) |
+| Zild | [@ziel1203](https://github.com/ziel1203) |
+| Jade | [@jeydweirdough](https://github.com/jeydweirdough) |
+| Linus | [@linus2002](https://github.com/linus2002) |
 | Maintainers | _not configured_ |
 
 ## Responsibilities

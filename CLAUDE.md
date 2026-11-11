@@ -69,6 +69,16 @@ If you touched a shared package also run `npm run test` and `npm run build` (all
 Then report: **modified files**, **test/check results (including failures)**, and **`git status`**.
 Do not claim something passed if you did not run it.
 
+**Always end with ready-to-use commit commands** (do not run them unless the developer asks), following
+`docs/COMMIT-POLICY.md`: explicit `git add` paths plus a Conventional Commit message. Split unrelated scopes
+into separate commits, and suggest the branch name if the developer is still on `main`. Example:
+
+```bash
+git switch -c fix/books-invoice-rounding
+git add apps/books/src/features/invoices/
+git commit -m "fix(books): correct invoice total rounding"
+```
+
 ## Quick reference
 
 | Command | Purpose |
