@@ -11,9 +11,25 @@ Read the root `CLAUDE.md` first. This file adds rules specific to this app.
 
 | Feature | Owner | Files |
 |---|---|---|
-| `users` | Jade | `src/features/users/`, `app/users/`, `app/api/users/` |
-| `roles` | Jade | `src/features/roles/`, `app/roles/`, `app/api/roles/` |
-| `audit-log` | Jade | `src/features/audit-log/`, `app/audit-log/`, `app/api/audit-log/` |
+| `users` | Jade | `src/features/users/`, `app/api/users/` |
+| `roles` | Jade | `src/features/roles/`, `app/api/roles/` |
+| `audit-log` | Jade | `src/features/audit-log/`, `app/api/audit-log/` |
+
+## Admin Panel navigation shell
+
+The UI is a navigation shell modelled on the reference admin console screenshots. Every page currently
+renders **Coming Soon**.
+
+- **Single source of truth:** `src/navigation/config.ts` (`SECTIONS`, `USER_DETAIL_ITEMS`). The primary
+  sidebar, secondary sidebars, routes, page titles and breadcrumbs are all derived from it.
+- **Routing:** `app/[...slug]/page.tsx` resolves every URL through `src/navigation/resolve.ts`. Unknown paths
+  return 404; section and group URLs redirect to their first item. Per-user pages live at `/users/<userId>/…`.
+- **Components:** `src/components/` (`AdminShell`, `PrimarySidebar`, `SecondarySidebar`, `TopBar`, `Dropdown`,
+  `ComingSoon`, `Icon`). These are layout/visual files, so changes need Linus's review.
+- **Adding a page:** add one entry to `config.ts`. Do not create per-page route files. When a module is built,
+  give it its own route folder (a specific route takes precedence over the catch-all).
+- **Do not add menu items that are not in the reference** without the app lead's approval.
+- Placeholders that are not wired: search, Quick Access search scope, notifications, help, sign-out, user data.
 
 Before editing, confirm with the developer you are working for that they own the feature you are about to change.
 If they do not, stop and ask.
@@ -22,7 +38,7 @@ If they do not, stop and ask.
 
 - Stay inside `apps/admin/`. Do not edit other apps or `packages/*` without explicit permission.
 - To use another app's data, call its API through `@bishnoi/api-client` — never import another app's source.
-- Feature code lives in `src/features/<feature>/`; routes in `app/<feature>/`; API routes in `app/api/<feature>/`.
+- Feature code lives in `src/features/<feature>/`; API routes in `app/api/<feature>/`; pages come from the navigation config (below).
 - New tables (later) must be prefixed `admin_`. Ask before creating any migration.
 
 ## UI
