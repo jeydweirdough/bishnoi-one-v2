@@ -9,11 +9,14 @@ import { Breadcrumbs } from "./ComingSoon";
 export function PageFrame({
   path,
   heading,
+  subtitle,
   description,
   toolbar,
   children,
 }: {
   path: string[];
+  /** Context line under the breadcrumb, e.g. which user a per-user page belongs to. */
+  subtitle?: ReactNode;
   /** Page heading when it differs from the sidebar label. */
   heading?: string;
   description?: ReactNode;
@@ -26,6 +29,7 @@ export function PageFrame({
   return (
     <div className="mx-auto max-w-5xl">
       <Breadcrumbs crumbs={route.crumbs} />
+      {subtitle ? <p className="mt-1 text-sm text-gray-600">{subtitle}</p> : null}
       <h1 className="mt-2 text-xl font-semibold">{heading ?? route.label}</h1>
       {description ? <p className="mt-1 text-sm text-gray-600">{description}</p> : null}
       {toolbar ? <div className="mt-4 flex flex-wrap items-center gap-2">{toolbar}</div> : null}

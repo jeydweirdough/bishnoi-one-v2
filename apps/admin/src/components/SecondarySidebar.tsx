@@ -68,7 +68,7 @@ export function SecondarySidebar() {
           </Link>
           <div className="min-w-0">
             <p className="truncate font-semibold">User {nav.userId}</p>
-            <p className="text-xs text-gray-600">Placeholder — user data not connected</p>
+            <p className="text-xs text-gray-600">User settings</p>
           </div>
         </div>
       ) : null}
