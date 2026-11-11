@@ -39,6 +39,13 @@ const warnings = [];
 
 const branchResult = checkBranchName(branch, ownership);
 if (!branchResult.ok) errors.push(branchResult.error);
+if (branchResult.legacy) {
+  warnings.push(`Branch "${branch}" uses the old naming. Next time start it with your name: <person>/<type>/<app>-<description>, e.g. aaron/feat/inventory-stock-adjustment.`);
+}
+if (branchResult.person && author && branchResult.person !== author) {
+  // A branch name proves nothing; this only helps reviewers notice a mix-up.
+  warnings.push(`Branch is named for ${ownership.developers[branchResult.person].name}, but the PR author is ${ownership.developers[author]?.name ?? author}.`);
+}
 
 const files = changedFiles(base, head, repoDir);
 const scope = evaluateScope({ files, author, privileged, ownership });

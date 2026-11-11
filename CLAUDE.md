@@ -8,7 +8,7 @@ Each app also has its own `apps/<app>/CLAUDE.md`; shared packages have `packages
 1. Read: `docs/ARCHITECTURE.md`, `docs/TEAM.md`, `docs/BRANCHING.md`, `docs/UI-GOVERNANCE.md`.
 2. Run `git branch --show-current` and `git status`.
    - On `main`? Do not edit. Ask the developer which task this is, then propose a branch name
-     (`feat|fix|ui|chore/<scope>-<description>`, see `docs/BRANCHING.md`).
+     (`<person>/<type>/<app>-<description>`, e.g. `aaron/feat/inventory-stock-adjustment`; see `docs/BRANCHING.md`).
 3. Identify **which developer you are working for** and **which app + feature** the task touches.
    Look up ownership in `.github/ownership.json` (summarised in `docs/TEAM.md`).
 4. If the developer does not own that app/feature, or anything is unclear: **stop and ask**.
@@ -74,7 +74,7 @@ Do not claim something passed if you did not run it.
 into separate commits, and suggest the branch name if the developer is still on `main`. Example:
 
 ```bash
-git switch -c fix/books-invoice-rounding
+git switch -c zild/fix/books-invoice-rounding
 git add apps/books/src/features/invoices/
 git commit -m "fix(books): correct invoice total rounding"
 ```

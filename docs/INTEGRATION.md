@@ -37,7 +37,7 @@ Put code in a package only when **two or more apps need it now**. App-specific c
 ## Changing a shared package
 
 1. **Ask first.** Describe the change to the package owner (and, for AI agents, to the developer you work for).
-2. Use a branch scoped to the package: `feat/contracts-add-currency-type`, `fix/auth-session-expiry`.
+2. Use a branch scoped to the package: `jade/feat/contracts-add-currency-type`, `jade/fix/auth-session-expiry`.
 3. Keep it **backwards compatible** where possible: add, don't rename or remove.
 4. Add or update tests in the package (`src/*.test.ts`).
 5. Run the full suite locally: `npm run typecheck && npm run test && npm run build` (all apps).

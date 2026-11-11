@@ -47,11 +47,11 @@ Full onboarding for Windows, Ubuntu and Zed: [docs/DEVELOPMENT.md](docs/DEVELOPM
 
 ```bash
 git switch main && git pull --ff-only origin main
-git switch -c feat/inventory-stock-adjustment
+git switch -c aaron/feat/inventory-stock-adjustment
 # ...work only inside your app/feature...
 git add apps/inventory/
 git commit -m "feat(inventory): add stock adjustment"
-git push -u origin feat/inventory-stock-adjustment
+git push -u origin aaron/feat/inventory-stock-adjustment
 gh pr create --base main --fill
 ```
 

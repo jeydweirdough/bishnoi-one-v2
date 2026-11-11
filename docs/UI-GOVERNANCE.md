@@ -53,7 +53,7 @@ by one person. Until then, plain screens keep reviews fast and avoid 12 apps dri
 ## Requesting a visual change
 
 1. Open an issue or ask Linus directly, describing the screen and why.
-2. Linus either does the work (`ui/<app>-<component>` branch) or authorizes it in writing on the PR.
+2. Linus either does the work (`linus/ui/<app>-<component>` branch) or authorizes it in writing on the PR.
 3. The PR ticks "Visual / high-fidelity change authorized by Linus" and requests Linus as reviewer.
 4. `ui-governance` passes only after Linus approves.
 

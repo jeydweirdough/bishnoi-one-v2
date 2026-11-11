@@ -75,12 +75,12 @@ npm run check:ui -- --files apps/crm/app/leads/page.tsx
 | `ci-quality`: CODEOWNERS out of date | `ownership.json` edited without regenerating | `npm run codeowners` and commit |
 | `ci-quality`: lint/typecheck | Code errors | Run the same command locally for the app |
 | `ci-build` | Build error, often a server/client boundary or missing env at build | `npx turbo run build --filter=@bishnoi/app-<app>` locally |
-| `scope-check`: branch | Name doesn't match `type/scope-description` | Create a correctly named branch and open a new PR (renaming closes the PR) |
+| `scope-check`: branch | Name doesn't match `<person>/<type>/<app>-<description>` | Create a correctly named branch and open a new PR (renaming closes the PR) |
 | `scope-check`: ownership | Files outside your app/feature | Revert them, split the PR, or get the owner's agreement + maintainer override label |
 | `scope-check`: deleted | Key app/package file deleted | Restore it; deliberate removals need a maintainer |
 | `pr-title-checklist` | Title format or unticked boxes | Edit the PR title/description. The check re-runs on edit. |
 | `ui-governance` | Protected UI file or flagged pattern | Remove the high-fidelity change, or get Linus's approval |
 | `security-secrets` | Secret or `.env` committed | **Rotate the secret first**, then remove it from history with a maintainer |
-| `security-dependencies` | High/critical advisory | `npm audit`, update the dependency (`chore/deps-...` branch) |
+| `security-dependencies` | High/critical advisory | `npm audit`, update the dependency (`<person>/chore/deps-...` branch) |
 | `integration` | Shared package change breaks another app | Fix compatibility, or coordinate with that app's owner |
 | Check stuck on "Expected — waiting" | Required check name changed or workflow didn't trigger | Compare with the names above. Re-run from the Actions tab. |

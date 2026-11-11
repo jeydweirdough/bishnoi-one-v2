@@ -6,7 +6,7 @@ never on `main`.
 ## Bring `main` into your branch (preferred: merge, no force-push)
 
 ```bash
-git switch feat/crm-lead-import
+git switch aryan/feat/crm-lead-import
 git fetch origin
 git merge origin/main
 # fix conflicts (below), then:
