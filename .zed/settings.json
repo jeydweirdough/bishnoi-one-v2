@@ -1,0 +1,11 @@
+// Shared Zed settings for Bishnoi One. Personal settings belong in ~/.config/zed/settings.json.
+{
+  "tab_size": 2,
+  "format_on_save": "on",
+  "ensure_final_newline_on_save": true,
+  "remove_trailing_whitespace_on_save": true,
+  "languages": {
+    "TypeScript": { "language_servers": ["vtsls", "eslint", "tailwindcss-language-server", "..."] },
+    "TSX": { "language_servers": ["vtsls", "eslint", "tailwindcss-language-server", "..."] }
+  }
+}

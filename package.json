@@ -1,0 +1,33 @@
+{
+  "name": "bishnoi-one",
+  "private": true,
+  "description": "Bishnoi One — monorepo for the Bishnoi One portal and its 12 business applications.",
+  "packageManager": "npm@11.19.1",
+  "engines": {
+    "node": ">=22.12.0",
+    "npm": ">=10"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test && npm run test:governance",
+    "test:governance": "node --test scripts/governance/governance.test.mjs",
+    "check:structure": "node scripts/governance/verify-structure.mjs",
+    "check:ui": "node scripts/governance/ui-fidelity-lint.mjs",
+    "check:codeowners": "node scripts/governance/generate-codeowners.mjs --check",
+    "check:scope": "node scripts/governance/scope-check.mjs",
+    "codeowners": "node scripts/governance/generate-codeowners.mjs",
+    "validate": "npm run check:structure && npm run check:codeowners && npm run check:ui && npm run lint && npm run typecheck && npm run test && npm run build",
+    "clean": "turbo run clean && node -e \"require('fs').rmSync('.turbo',{recursive:true,force:true})\""
+  },
+  "devDependencies": {
+    "turbo": "2.11.10",
+    "typescript": "6.0.3"
+  }
+}

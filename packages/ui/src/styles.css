@@ -1,0 +1,44 @@
+/*
+ * Bishnoi One — LOW-FIDELITY THEME
+ *
+ * Owner: Linus (sole UI/UX authority). Changes require Linus's approval — see docs/UI-GOVERNANCE.md.
+ *
+ * The theme below REMOVES Tailwind's default palette and animations. Only grayscale
+ * colors exist, so classes like `bg-blue-500` or `animate-bounce` generate no CSS.
+ * Do not add colors, gradients, fonts or animations here without Linus's authorization.
+ */
+@import "tailwindcss";
+
+/* Scan shared components so apps get their classes. Apps' own files are detected automatically. */
+@source "./";
+
+@theme {
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f4f4f5;
+  --color-gray-200: #e4e4e7;
+  --color-gray-300: #d4d4d8;
+  --color-gray-400: #a1a1aa;
+  --color-gray-500: #71717a;
+  --color-gray-600: #52525b;
+  --color-gray-700: #3f3f46;
+  --color-gray-800: #27272a;
+  --color-gray-900: #18181b;
+
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  --animate-*: initial;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900 antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-black;
+  }
+}

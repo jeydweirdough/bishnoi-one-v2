@@ -1,0 +1,23 @@
+{
+  "name": "@bishnoi/database",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Neon PostgreSQL access for Bishnoi One (server-side only).",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": { "@neondatabase/serverless": "1.2.0" },
+  "devDependencies": {
+    "@bishnoi/config": "*",
+    "@types/node": "26.6.6",
+    "eslint": "10.14.0",
+    "typescript": "6.0.3",
+    "vitest": "5.1.0"
+  }
+}

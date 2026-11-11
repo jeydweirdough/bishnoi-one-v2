@@ -1,0 +1,32 @@
+{
+  "name": "@bishnoi/config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared TypeScript, ESLint, PostCSS and Next.js configuration for Bishnoi One.",
+  "exports": {
+    "./tsconfig/base.json": "./tsconfig/base.json",
+    "./tsconfig/nextjs.json": "./tsconfig/nextjs.json",
+    "./tsconfig/library.json": "./tsconfig/library.json",
+    "./eslint": "./eslint/index.mjs",
+    "./postcss": "./postcss.config.mjs",
+    "./next": {
+      "types": "./next.d.mts",
+      "default": "./next.mjs"
+    }
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@eslint/js": "10.0.1",
+    "@next/eslint-plugin-next": "16.4.6",
+    "@tailwindcss/postcss": "4.3.5",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.14.0",
+    "typescript-eslint": "8.72.2"
+  },
+  "devDependencies": {
+    "eslint": "10.14.0"
+  }
+}

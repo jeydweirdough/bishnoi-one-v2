@@ -1,0 +1,71 @@
+# Branch naming, application ownership and changed-file validation.
+#
+# Security model:
+#  - Uses `pull_request` (never `pull_request_target`): read-only token, no secrets, safe for forks.
+#  - The checker script is taken from the BASE commit (trusted), never from the PR, so a PR cannot
+#    weaken the rules it is judged by. PR files are only diffed, never executed.
+#  - Identity = the PR author's GitHub login from the event payload. Branch names prove nothing.
+name: Scope Check
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, edited, labeled, unlabeled, ready_for_review]
+  merge_group:
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: read
+
+concurrency:
+  group: scope-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  scope-check:
+    name: scope-check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Merge queue
+        if: github.event_name == 'merge_group'
+        run: echo "Scope was validated on the pull request."
+
+      - name: Check out trusted base (governance scripts)
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: trusted
+          persist-credentials: false
+
+      - name: Check out PR (data only)
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: pr
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-node@v5
+        if: github.event_name == 'pull_request'
+        with:
+          node-version-file: trusted/.nvmrc
+
+      - name: Validate branch and ownership
+        id: scope
+        if: github.event_name == 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -f trusted/scripts/governance/scope-check.mjs ]; then
+            echo "::error::Governance scripts are not on main yet. A maintainer must merge the repository bootstrap first."
+            exit 1
+          fi
+          node trusted/scripts/governance/scope-check.mjs --repo pr
+
+      - name: Flag shared-package changes
+        if: github.event_name == 'pull_request' && steps.scope.outputs.shared_packages_changed == 'true'
+        run: echo "::warning::This PR changes shared packages. Owner review is required (CODEOWNERS) and integration.yml rebuilds every app."

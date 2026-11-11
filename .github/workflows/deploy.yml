@@ -1,0 +1,162 @@
+# Independent per-application deployments to Vercel or Coolify.
+#
+# DISABLED until a repository administrator sets the repository variable DEPLOYMENTS_ENABLED=true.
+# - push to main     → PREVIEW deploys of the apps changed by the push (never production).
+# - workflow_dispatch → one app, preview or production. Production runs in the `production`
+#                      GitHub Environment, which must have required reviewers (explicit authorization).
+# Every deploy is preceded by lint + typecheck + build of that app; a failure stops the deploy.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      app:
+        description: Application to deploy
+        required: true
+        type: choice
+        options: [one, inventory, crm, books, expense, payroll, people, recruit, analytics, admin, desk, contracts, workdrive]
+      environment:
+        description: Target environment
+        required: true
+        type: choice
+        default: preview
+        options: [preview, production]
+      platform:
+        description: Hosting platform
+        required: true
+        type: choice
+        default: vercel
+        options: [vercel, coolify]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.event.inputs.app || 'changed' }}-${{ github.event.inputs.environment || 'preview' }}
+  cancel-in-progress: false
+
+env:
+  NEXT_TELEMETRY_DISABLED: 1
+  TURBO_TELEMETRY_DISABLED: 1
+
+jobs:
+  plan:
+    name: deploy-plan
+    if: vars.DEPLOYMENTS_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      environment: ${{ steps.plan.outputs.environment }}
+      platform: ${{ steps.plan.outputs.platform }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - id: plan
+        env:
+          INPUT_APP: ${{ github.event.inputs.app }}
+          INPUT_ENVIRONMENT: ${{ github.event.inputs.environment }}
+          INPUT_PLATFORM: ${{ github.event.inputs.platform }}
+          DEFAULT_PLATFORM: ${{ vars.DEPLOY_PLATFORM || 'vercel' }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          all=$(ls apps)
+          if [ -n "$INPUT_APP" ]; then
+            apps="$INPUT_APP"; environment="$INPUT_ENVIRONMENT"; platform="$INPUT_PLATFORM"
+          else
+            environment="preview"; platform="$DEFAULT_PLATFORM"
+            if [ -z "$BEFORE" ] || ! git cat-file -e "$BEFORE" 2>/dev/null; then
+              apps="$all"
+            else
+              changed=$(git diff --name-only "$BEFORE" HEAD)
+              if echo "$changed" | grep -qE '^(packages/|package(-lock)?\.json$|turbo\.json$)'; then
+                apps="$all"
+              else
+                apps=$(echo "$changed" | sed -n 's#^apps/\([^/]*\)/.*#\1#p' | sort -u)
+              fi
+            fi
+          fi
+          matrix=$(for a in $apps; do printf '{"app":"%s","key":"%s"}\n' "$a" "$(echo "$a" | tr '[:lower:]-' '[:upper:]_')"; done | jq -cs '{include: .}')
+          echo "Deploying to $environment via $platform: $apps"
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+          echo "environment=$environment" >> "$GITHUB_OUTPUT"
+          echo "platform=$platform" >> "$GITHUB_OUTPUT"
+
+  validate:
+    name: validate (${{ matrix.app }})
+    needs: plan
+    if: needs.plan.outputs.matrix != '{"include":[]}'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npx turbo run lint typecheck build --filter=@bishnoi/app-${{ matrix.app }}...
+
+  vercel:
+    name: vercel (${{ matrix.app }})
+    needs: [plan, validate]
+    if: needs.plan.outputs.platform == 'vercel'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: ${{ needs.plan.outputs.environment }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets[format('VERCEL_PROJECT_ID_{0}', matrix.key)] }}
+      PROD_FLAG: ${{ needs.plan.outputs.environment == 'production' && '--prod' || '' }}
+      VERCEL_ENV: ${{ needs.plan.outputs.environment == 'production' && 'production' || 'preview' }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+      - name: Check configuration
+        run: |
+          for name in VERCEL_TOKEN VERCEL_ORG_ID VERCEL_PROJECT_ID; do
+            if [ -z "${!name}" ]; then echo "::error::$name is not configured for ${{ matrix.app }}"; exit 1; fi
+          done
+      - run: npx --yes vercel@65.14.0 pull --yes --environment="$VERCEL_ENV"
+      - run: npx --yes vercel@65.14.0 build $PROD_FLAG
+      - run: npx --yes vercel@65.14.0 deploy --prebuilt $PROD_FLAG
+
+  coolify:
+    name: coolify (${{ matrix.app }})
+    needs: [plan, validate]
+    if: needs.plan.outputs.platform == 'coolify'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: ${{ needs.plan.outputs.environment }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    env:
+      COOLIFY_TOKEN: ${{ secrets.COOLIFY_TOKEN }}
+      # Deploy webhook URL from Coolify, e.g. https://coolify.example.com/api/v1/deploy?uuid=<resource>
+      COOLIFY_WEBHOOK: ${{ secrets[format('COOLIFY_WEBHOOK_{0}', matrix.key)] }}
+    steps:
+      - name: Trigger Coolify deployment
+        run: |
+          if [ -z "$COOLIFY_TOKEN" ] || [ -z "$COOLIFY_WEBHOOK" ]; then
+            echo "::error::COOLIFY_TOKEN or COOLIFY_WEBHOOK_${{ matrix.key }} is not configured"; exit 1
+          fi
+          curl -fsS -X GET "$COOLIFY_WEBHOOK" -H "Authorization: Bearer $COOLIFY_TOKEN"

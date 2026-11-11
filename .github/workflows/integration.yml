@@ -1,0 +1,66 @@
+# Shared-package and cross-application compatibility. When anything shared changes
+# (packages/, root package files, turbo.json) every app is typechecked, tested and built.
+name: Integration
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  merge_group:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: integration-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  NEXT_TELEMETRY_DISABLED: 1
+  TURBO_TELEMETRY_DISABLED: 1
+
+jobs:
+  integration:
+    name: integration
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Detect shared changes
+        id: changes
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before || '' }}
+        run: |
+          if [ "${{ github.event_name }}" != "pull_request" ] || [ -z "$BASE" ]; then
+            echo "shared=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          changed=$(git diff --name-only "$BASE"...HEAD)
+          if echo "$changed" | grep -qE '^(packages/|package(-lock)?\.json$|turbo\.json$)'; then
+            echo "shared=true" >> "$GITHUB_OUTPUT"
+            echo "Shared files changed:"; echo "$changed" | grep -E '^(packages/|package(-lock)?\.json$|turbo\.json$)'
+          else
+            echo "shared=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Structure and app independence
+        run: node scripts/governance/verify-structure.mjs
+
+      - run: npm ci
+        if: steps.changes.outputs.shared == 'true'
+
+      - name: Full compatibility run (all apps)
+        if: steps.changes.outputs.shared == 'true'
+        run: npx turbo run typecheck test build --concurrency=4
+
+      - name: No shared changes
+        if: steps.changes.outputs.shared != 'true'
+        run: echo "No shared packages changed; affected apps are covered by CI."

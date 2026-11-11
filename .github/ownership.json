@@ -1,0 +1,139 @@
+{
+  "$comment": "Single source of truth for Bishnoi One ownership. Read by scripts/governance/*. After editing run `npm run codeowners` and commit .github/CODEOWNERS. Changes require maintainer review. GitHub usernames are null until a repository administrator fills in VERIFIED handles — never guess them.",
+  "enforce": false,
+  "maintainers": [],
+  "bots": ["dependabot[bot]", "renovate[bot]", "github-actions[bot]"],
+  "uiAuthority": "linus",
+  "overrideLabel": "scope-override-approved",
+  "developers": {
+    "aaron": { "name": "Aaron", "github": null, "role": "Application developer" },
+    "aryan": { "name": "Aryan", "github": null, "role": "Application developer" },
+    "zild": { "name": "Zild", "github": null, "role": "Application developer" },
+    "jade": { "name": "Jade", "github": null, "role": "Application developer" },
+    "linus": { "name": "Linus", "github": null, "role": "Frontend/UI/UX lead (sole UI authority)" }
+  },
+  "apps": {
+    "one": {
+      "lead": "linus",
+      "owners": ["linus"],
+      "backupReviewer": "jade",
+      "features": { "launcher": "linus", "profile": "linus", "organization": "linus", "access": "linus" }
+    },
+    "inventory": {
+      "lead": "aaron",
+      "owners": ["aaron"],
+      "backupReviewer": "zild",
+      "features": { "items": "aaron", "stock-adjustments": "aaron", "warehouses": "aaron" }
+    },
+    "crm": {
+      "lead": "aryan",
+      "owners": ["aryan"],
+      "backupReviewer": "jade",
+      "features": { "leads": "aryan", "contacts": "aryan", "deals": "aryan" }
+    },
+    "books": {
+      "lead": "zild",
+      "owners": ["aaron", "zild"],
+      "backupReviewer": "aryan",
+      "features": { "invoices": "aaron", "ledger": "zild", "financial-reports": "zild" }
+    },
+    "expense": {
+      "lead": "zild",
+      "owners": ["zild"],
+      "backupReviewer": "aaron",
+      "features": { "claims": "zild", "expense-reports": "zild", "policies": "zild" }
+    },
+    "payroll": {
+      "lead": "zild",
+      "owners": ["zild"],
+      "backupReviewer": "aaron",
+      "features": { "pay-runs": "zild", "salary-components": "zild", "payslips": "zild" }
+    },
+    "people": {
+      "lead": "jade",
+      "owners": ["aaron", "jade"],
+      "backupReviewer": "zild",
+      "features": { "employees": "jade", "onboarding": "jade", "attendance": "aaron", "leave": "aaron" }
+    },
+    "recruit": {
+      "lead": "aaron",
+      "owners": ["aaron", "jade"],
+      "backupReviewer": "aryan",
+      "features": { "job-openings": "aaron", "candidates": "aaron", "interviews": "jade", "offers": "jade" }
+    },
+    "analytics": {
+      "lead": "linus",
+      "owners": ["aaron", "aryan", "zild", "jade", "linus"],
+      "backupReviewer": "jade",
+      "features": {
+        "overview": "linus",
+        "inventory-reports": "aaron",
+        "recruit-reports": "aaron",
+        "sales-reports": "aryan",
+        "finance-reports": "zild",
+        "hr-reports": "jade"
+      }
+    },
+    "admin": {
+      "lead": "jade",
+      "owners": ["jade"],
+      "backupReviewer": "aryan",
+      "features": { "users": "jade", "roles": "jade", "audit-log": "jade" }
+    },
+    "desk": {
+      "lead": "aryan",
+      "owners": ["aryan", "jade"],
+      "backupReviewer": "zild",
+      "features": { "tickets": "aryan", "sla": "aryan", "knowledge-base": "jade" }
+    },
+    "contracts": {
+      "lead": "aryan",
+      "owners": ["aryan", "zild", "jade"],
+      "backupReviewer": "aaron",
+      "features": { "templates": "aryan", "obligations": "zild", "approvals": "jade" }
+    },
+    "workdrive": {
+      "lead": "aryan",
+      "owners": ["aryan", "jade"],
+      "backupReviewer": "zild",
+      "features": { "files": "aryan", "sharing": "jade" }
+    }
+  },
+  "packages": {
+    "ui": { "owners": ["linus"], "backupReviewer": "jade" },
+    "auth": { "owners": ["jade"], "backupReviewer": "aryan" },
+    "permissions": { "owners": ["jade"], "backupReviewer": "aryan" },
+    "database": { "owners": [], "backupReviewer": null },
+    "api-client": { "owners": [], "backupReviewer": null },
+    "contracts": { "owners": [], "backupReviewer": null },
+    "config": { "owners": [], "backupReviewer": null }
+  },
+  "protectedUiPaths": [
+    "packages/ui/**",
+    "packages/config/postcss.config.mjs",
+    "apps/*/app/globals.css",
+    "apps/*/app/layout.tsx",
+    "apps/*/public/**",
+    "docs/UI-GOVERNANCE.md"
+  ],
+  "uiAuthorityPaths": ["apps/*/app/**/*.tsx", "apps/*/app/**/*.css", "apps/*/src/components/**", "apps/*/public/**"],
+  "uiAuthorityExcludedPaths": ["apps/*/app/api/**"],
+  "governancePaths": [
+    ".github/**",
+    "scripts/**",
+    "CLAUDE.md",
+    "README.md",
+    "package.json",
+    "turbo.json",
+    ".gitignore",
+    ".gitattributes",
+    ".npmrc",
+    ".nvmrc",
+    ".editorconfig",
+    ".env.example",
+    "Dockerfile",
+    ".dockerignore",
+    ".zed/**",
+    ".vscode/**"
+  ]
+}

@@ -1,0 +1,75 @@
+# PR title (Conventional Commits) + template checklist, and the UI governance gate.
+# Both jobs also run on review events so Linus's approval re-evaluates the UI gate.
+# Scripts come from the trusted base commit; PR content is read, never executed.
+name: PR Validation
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+  pull_request_review:
+    types: [submitted, dismissed]
+  merge_group:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: pr-validation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  title-and-checklist:
+    name: pr-title-checklist
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Merge queue
+        if: github.event_name == 'merge_group'
+        run: echo "Validated on the pull request."
+      - uses: actions/checkout@v5
+        if: github.event_name != 'merge_group'
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        if: github.event_name != 'merge_group'
+        with:
+          node-version-file: .nvmrc
+      - name: Validate title and checklist
+        if: github.event_name != 'merge_group'
+        run: node scripts/governance/pr-validation.mjs
+
+  ui-governance:
+    name: ui-governance
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Merge queue
+        if: github.event_name == 'merge_group'
+        run: echo "Validated on the pull request."
+      - name: Check out trusted base
+        if: github.event_name != 'merge_group'
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: trusted
+          persist-credentials: false
+      - name: Check out PR (data only)
+        if: github.event_name != 'merge_group'
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: pr
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        if: github.event_name != 'merge_group'
+        with:
+          node-version-file: trusted/.nvmrc
+      - name: Require Linus's approval for UI changes
+        if: github.event_name != 'merge_group'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node trusted/scripts/governance/ui-review-gate.mjs --repo pr

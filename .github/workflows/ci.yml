@@ -1,0 +1,68 @@
+# Lint, typecheck, test and build. Runs PR code with a read-only token and no secrets.
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  merge_group:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  NEXT_TELEMETRY_DISABLED: 1
+  TURBO_TELEMETRY_DISABLED: 1
+  # On PRs only packages affected by the change (and their dependents) run; main and the merge queue run everything.
+  TURBO_SCOPE: ${{ github.event_name == 'pull_request' && '--affected' || '' }}
+
+jobs:
+  quality:
+    name: ci-quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Repository structure
+        run: npm run check:structure
+      - name: CODEOWNERS in sync with ownership.json
+        run: npm run check:codeowners
+      - name: Governance script tests
+        run: npm run test:governance
+      - name: Lint, typecheck, test
+        run: npx turbo run lint typecheck test $TURBO_SCOPE
+
+  build:
+    name: ci-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - uses: actions/cache@v4
+        with:
+          path: .turbo/cache
+          key: turbo-build-${{ runner.os }}-${{ github.sha }}
+          restore-keys: turbo-build-${{ runner.os }}-
+      - run: npm ci
+      - name: Build
+        run: npx turbo run build $TURBO_SCOPE --cache-dir=.turbo/cache
