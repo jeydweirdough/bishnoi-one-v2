@@ -51,7 +51,7 @@ jobs:
       environment: ${{ steps.plan.outputs.environment }}
       platform: ${{ steps.plan.outputs.platform }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -95,7 +95,7 @@ jobs:
       fail-fast: false
       matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
       - uses: actions/setup-node@v5
@@ -123,7 +123,7 @@ jobs:
       PROD_FLAG: ${{ needs.plan.outputs.environment == 'production' && '--prod' || '' }}
       VERCEL_ENV: ${{ needs.plan.outputs.environment == 'production' && 'production' || 'preview' }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
       - uses: actions/setup-node@v5
