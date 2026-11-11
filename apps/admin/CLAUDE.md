@@ -17,8 +17,12 @@ Read the root `CLAUDE.md` first. This file adds rules specific to this app.
 
 ## Admin Panel navigation shell
 
-The UI is a navigation shell modelled on the reference admin console screenshots. Every page currently
-renders **Coming Soon**.
+The UI is a navigation shell modelled on the reference admin console screenshots. Every page except the
+Dashboard currently renders **Coming Soon**.
+
+- **Dashboard (`/`):** `src/dashboard/DashboardView.tsx`, fed by `getDashboardData()` in `src/dashboard/data.ts`.
+  That function returns **mock** values. Replace its body with real queries, keep the `DashboardData` shape,
+  and never put real organization or personal data in the mock.
 
 - **Single source of truth:** `src/navigation/config.ts` (`SECTIONS`, `USER_DETAIL_ITEMS`). The primary
   sidebar, secondary sidebars, routes, page titles and breadcrumbs are all derived from it.
