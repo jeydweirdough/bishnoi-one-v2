@@ -20,6 +20,8 @@ env:
   TURBO_TELEMETRY_DISABLED: 1
   # On PRs only packages affected by the change (and their dependents) run; main and the merge queue run everything.
   TURBO_SCOPE: ${{ github.event_name == 'pull_request' && '--affected' || '' }}
+  # Compare against the PR's base commit. The checkout has no local `main` branch, which turbo would otherwise look for.
+  TURBO_SCM_BASE: ${{ github.event.pull_request.base.sha }}
 
 jobs:
   quality:
