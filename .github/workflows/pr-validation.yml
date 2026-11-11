@@ -33,7 +33,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.base.sha }}
           persist-credentials: false
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         if: github.event_name != 'merge_group'
         with:
           node-version-file: .nvmrc
@@ -64,7 +64,7 @@ jobs:
           path: pr
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         if: github.event_name != 'merge_group'
         with:
           node-version-file: trusted/.nvmrc
