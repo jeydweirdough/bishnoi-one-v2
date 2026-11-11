@@ -15,25 +15,33 @@ Read the root `CLAUDE.md` first. This file adds rules specific to this app.
 | `roles` | Jade | `src/features/roles/`, `app/api/roles/` |
 | `audit-log` | Jade | `src/features/audit-log/`, `app/api/audit-log/` |
 
-## Admin Panel navigation shell
+## Admin Panel
 
-The UI is a navigation shell modelled on the reference admin console screenshots. Every page except the
-Dashboard currently renders **Coming Soon**.
+The UI follows the reference admin console screenshots, in low fidelity. **Every page shows mock data**; actions
+that need a backend (Add, Save, Delete, …) are visible but disabled, and settings are read-only.
 
-- **Dashboard (`/`):** `src/dashboard/DashboardView.tsx`, fed by `getDashboardData()` in `src/dashboard/data.ts`.
-  That function returns **mock** values. Replace its body with real queries, keep the `DashboardData` shape,
-  and never put real organization or personal data in the mock.
+Still **Coming Soon** (no reference screenshots yet): Organization → White Labeling, Other App Settings,
+Zia for Mail, Reports. Toolkit and Storage Reports are external tools in the reference.
 
 - **Single source of truth:** `src/navigation/config.ts` (`SECTIONS`, `USER_DETAIL_ITEMS`). The primary
   sidebar, secondary sidebars, routes, page titles and breadcrumbs are all derived from it.
-- **Routing:** `app/[...slug]/page.tsx` resolves every URL through `src/navigation/resolve.ts`. Unknown paths
-  return 404; section and group URLs redirect to their first item. Per-user pages live at `/users/<userId>/…`.
+- **Routing:** each built page has its own route folder (`app/<section>/…/page.tsx`). `app/[...slug]/page.tsx`
+  catches everything else: unbuilt pages show Coming Soon, section and group URLs redirect to their first item,
+  unknown paths return 404. Per-user pages live at `app/users/[userId]/…`; unknown user IDs return 404.
+- **Page frame:** wrap pages in `PageFrame` (`src/components/PageFrame.tsx`) with their `path`, so breadcrumbs and
+  titles stay in sync with the sidebar. Helpers there: `PlaceholderAction` (disabled action), `EmptyState`,
+  `ListTable`.
+- **Mock data:** one `data.ts` per section (`src/dashboard`, `src/organization`, `src/mail-settings`, `src/users`,
+  `src/domains`, `src/data-migration`, `src/subscription`, `src/security`). Pages only use the exported types and
+  functions, so replacing a function body with a real query is enough. Never put real organization, personal or
+  mail data in these files.
+- **Security & Compliance** is data-driven: page descriptions live in `src/security/specs.ts` and are rendered by
+  `src/security/SecurityPage.tsx`. Change a page by editing its spec; the Dashboard and Roles pages are custom.
 - **Components:** `src/components/` (`AdminShell`, `PrimarySidebar`, `SecondarySidebar`, `TopBar`, `Dropdown`,
-  `ComingSoon`, `Icon`). These are layout/visual files, so changes need Linus's review.
-- **Adding a page:** add one entry to `config.ts`. Do not create per-page route files. When a module is built,
-  give it its own route folder (a specific route takes precedence over the catch-all).
+  `ComingSoon`, `Icon`, `PageFrame`, `CopyButton`). These are layout/visual files, so changes need Linus's review.
+- **Adding a page:** add one entry to `config.ts`, then a route folder for it (or let it show Coming Soon).
 - **Do not add menu items that are not in the reference** without the app lead's approval.
-- Placeholders that are not wired: search, Quick Access search scope, notifications, help, sign-out, user data.
+- Top bar placeholders that are not wired: search, Quick Access search scope, notifications, help, sign-out.
 
 Before editing, confirm with the developer you are working for that they own the feature you are about to change.
 If they do not, stop and ask.
