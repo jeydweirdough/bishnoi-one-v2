@@ -27,7 +27,7 @@
     "clean": "turbo run clean && node -e \"require('fs').rmSync('.turbo',{recursive:true,force:true})\""
   },
   "devDependencies": {
-    "turbo": "2.11.10",
-    "typescript": "6.0.3"
+    "turbo": "2.11.11",
+    "typescript": "7.0.2"
   }
 }
